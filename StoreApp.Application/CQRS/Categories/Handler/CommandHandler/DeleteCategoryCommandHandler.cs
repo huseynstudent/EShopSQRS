@@ -25,7 +25,8 @@ public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryComman
         var response = new DeleteCategoryCommandResponse
         {
             Id = category.Id,
-            Name = category.Name        };
+            Name = $"Deleted {category.Name}"
+        };
         return new ResponseModel<DeleteCategoryCommandResponse>(response);
     }
 }
