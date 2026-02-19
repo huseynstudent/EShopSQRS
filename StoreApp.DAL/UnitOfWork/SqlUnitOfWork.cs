@@ -17,9 +17,10 @@ public class SqlUnitOfWork : IUnitOfWork
         _context = context;
     }
     public SqlCategoryRepository _categoryRepository;
-
     public ICategoryRepository CategoryRepository => _categoryRepository ??= new SqlCategoryRepository(_connectionString, _context);
 
+    public SqlProductRepository _productRepository;
+    public IProductRepository ProductRepository => _productRepository ??= new SqlProductRepository(_connectionString, _context);
     public Task SaveChangesAsync()
     {
         return _context.SaveChangesAsync();
