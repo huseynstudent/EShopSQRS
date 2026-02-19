@@ -13,7 +13,6 @@ builder.Services.AddControllers();
 builder.Services.AddApplicationServices();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddSqlServer<StoreAppDbContext>(connectionString);
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddScoped<IUnitOfWork, SqlUnitOfWork>((provider) =>
 {
     var dbContext = provider.GetRequiredService<StoreAppDbContext>();
