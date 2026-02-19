@@ -6,7 +6,7 @@ using StoreApp.Repository.Comman;
 
 namespace StoreApp.Application.CQRS.Products.Handler.CommandHandler;
 
-public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommandRequest, ResponseModel<DeleteProductCommandResponse>
+public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommandRequest, ResponseModel<DeleteProductCommandResponse>>
 {
     private readonly IUnitOfWork _unitOfWork;
 

@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using StoreApp.Application.CQRS.Categories.Command.Request;
 using StoreApp.Application.CQRS.Categories.Command.Response;
-using StoreApp.Application.CQRS.Categorys.Command.Response;
 using StoreApp.Comman.GlobalResponse.Generics.ResponseModel;
 using StoreApp.Domain.Entities;
 using StoreApp.Repository.Comman;
