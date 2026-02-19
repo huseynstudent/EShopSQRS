@@ -1,11 +1,14 @@
 ﻿using MediatR;
 using StoreApp.Application.CQRS.Categories.Command.Request;
+using StoreApp.Application.CQRS.Categories.Command.Response;
+using StoreApp.Application.CQRS.Categorys.Command.Response;
 using StoreApp.Comman.GlobalResponse.Generics.ResponseModel;
+using StoreApp.Domain.Entities;
 using StoreApp.Repository.Comman;
 
 namespace StoreApp.Application.CQRS.Categories.Handler.CommandHandler;
 
-class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommandRequest, ResponseModel<bool>>
+public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommandRequest, ResponseModel<DeleteCategoryCommandResponse>>
 {
     private readonly IUnitOfWork _unitOfWork;
 
@@ -14,12 +17,15 @@ class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommandReques
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<ResponseModel<bool>> Handle(DeleteCategoryCommandRequest request, CancellationToken cancellationToken)
+    public async Task<ResponseModel<DeleteCategoryCommandResponse>> Handle(DeleteCategoryCommandRequest request, CancellationToken cancellationToken)
     {
         var category = await _unitOfWork.CategoryRepository.GetByIdAsync(request.Id);
         _unitOfWork.CategoryRepository.Delete(request.Id);
         await _unitOfWork.SaveChangesAsync();
-
-        return new ResponseModel<bool>(true);
+        var response = new DeleteCategoryCommandResponse
+        {
+            Id = category.Id,
+            Name = category.Name        };
+        return new ResponseModel<DeleteCategoryCommandResponse>(response);
     }
 }

@@ -21,7 +21,7 @@ namespace StoreApp.WebApi.Controllers
             return Ok(await Sender.Send(request));
         }
 
-        [HttpDelete("{id:int}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             var result = await Sender.Send(new DeleteCategoryCommandRequest { Id = id });
@@ -29,7 +29,7 @@ namespace StoreApp.WebApi.Controllers
             return result.Data ? NoContent() : NotFound();
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetCategoryById(int id)
         {
             return Ok(await Sender.Send(new GetCategoryByIdQueryRequest { Id = id }));

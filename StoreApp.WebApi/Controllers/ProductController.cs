@@ -22,13 +22,13 @@ public class ProductController : BaseController
         return Ok(await Sender.Send(request));
     }
 
-    [HttpDelete("{id:int}")]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProduct(int id)
     {
         return Ok(await Sender.Send(new DeleteProductCommandRequest { Id = id }));
     }
 
-    [HttpGet("{id:int}")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
         return Ok(await Sender.Send(new GetProductByIdQueryRequest { Id = id }));
