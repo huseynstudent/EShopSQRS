@@ -24,9 +24,7 @@ namespace StoreApp.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            var result = await Sender.Send(new DeleteCategoryCommandRequest { Id = id });
-            // Data booldu ancaq IActionresult lazimdi
-            return result.Data ? NoContent() : NotFound();
+            return Ok( await Sender.Send(new DeleteCategoryCommandRequest { Id = id }));
         }
 
         [HttpGet("{id}")]
